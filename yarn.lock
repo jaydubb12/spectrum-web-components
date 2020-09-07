@@ -3519,6 +3519,11 @@
   resolved "https://registry.yarnpkg.com/@spectrum-css/dropzone/-/dropzone-3.0.0-beta.2.tgz#cf8000fdb1b620f698b92aea0556c73044cddcfb"
   integrity sha512-mVw9iv9WFx6HOfE0lY3UtZdQiobgHtLnV5JElp+WFi3GM65iNmxfzmdTgaOqFYllpqzjAacnTN5EVXyDjzENlw==
 
+"@spectrum-css/fieldlabel@^3.0.0-beta.4":
+  version "3.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldlabel/-/fieldlabel-3.0.0-beta.4.tgz#74b570f632637bb9018d0f855afeae579b6fdf36"
+  integrity sha512-7FBBaNnm0+ZVgJ7jn8Bd6+i6g+U8mo9pCNHYvNk1+6VrlB4TWJC2oWhpH0VxO5XBu1j9nq46fhAO7/bQ6xxO+w==
+
 "@spectrum-css/icon@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@spectrum-css/icon/-/icon-2.1.1.tgz#53b371b293833e501898472dda8661a07db09fd8"
