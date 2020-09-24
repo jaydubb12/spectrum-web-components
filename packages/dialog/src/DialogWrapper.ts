@@ -183,7 +183,7 @@ export class DialogWrapper extends SpectrumElement {
                     : html``}
                 ${this.headline
                     ? html`
-                          <h2 slot="title">${this.headline}</h2>
+                          <h2 slot="heading">${this.headline}</h2>
                       `
                     : html``}
                 <slot></slot>

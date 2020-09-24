@@ -20,13 +20,23 @@ import '@spectrum-web-components/button/sp-button.js';
 export default {
     title: 'Dialog',
     component: 'sp-dialog',
+    decorators: [
+        (story: () => TemplateResult): TemplateResult =>
+            html`
+                <div
+                    style="display: grid; align-items: center; justify-content: center; min-height: 100vh; position: absolute; top: 0; left: 0; right: 0;"
+                >
+                    ${story()}
+                </div>
+            `,
+    ],
 };
 
 export const small = (): TemplateResult => {
     const noTransitions = boolean('No Transitions', false, 'Testing');
     return html`
         <sp-dialog open size="small" ?no-transitions=${noTransitions}>
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -45,7 +55,7 @@ export const small = (): TemplateResult => {
 export const medium = (): TemplateResult => {
     return html`
         <sp-dialog open size="medium">
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -64,7 +74,7 @@ export const medium = (): TemplateResult => {
 export const large = (): TemplateResult => {
     return html`
         <sp-dialog open size="large">
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -83,7 +93,7 @@ export const large = (): TemplateResult => {
 export const dismissible = (): TemplateResult => {
     return html`
         <sp-dialog open size="medium" dismissible>
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -102,7 +112,7 @@ export const dismissible = (): TemplateResult => {
 export const noDivider = (): TemplateResult => {
     return html`
         <sp-dialog open size="medium" dismissible no-divider>
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -122,7 +132,7 @@ export const hero = (): TemplateResult => {
     return html`
         <sp-dialog open size="medium" dismissible no-divider>
             <div slot="hero" style="background-image: url(${landscape})"></div>
-            <h2 slot="title">Disclaimer</h2>
+            <h2 slot="heading">Disclaimer</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor
             augue mauris augue neque gravida. Libero volutpat sed ornare arcu.
@@ -141,7 +151,7 @@ export const hero = (): TemplateResult => {
 export const alertConfirmation = (): TemplateResult => {
     return html`
         <sp-dialog open size="alert">
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             Smart filters are nondestructive and will preserve your original
             images.
             <sp-button variant="secondary" slot="button">Cancel</sp-button>
@@ -153,7 +163,7 @@ export const alertConfirmation = (): TemplateResult => {
 export const alertInformation = (): TemplateResult => {
     return html`
         <sp-dialog open size="alert">
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             Smart filters are nondestructive and will preserve your original
             images.
             <sp-button variant="secondary" slot="button">Cancel</sp-button>
@@ -165,7 +175,7 @@ export const alertInformation = (): TemplateResult => {
 export const alertDestructive = (): TemplateResult => {
     return html`
         <sp-dialog open size="alert">
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             Smart filters are nondestructive and will preserve your original
             images.
             <sp-button variant="secondary" slot="button">Cancel</sp-button>
@@ -177,7 +187,7 @@ export const alertDestructive = (): TemplateResult => {
 export const alertError = (): TemplateResult => {
     return html`
         <sp-dialog open size="alert" error>
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             Smart filters are nondestructive and will preserve your original
             images.
             <sp-button variant="secondary" slot="button">Cancel</sp-button>
@@ -189,7 +199,7 @@ export const alertError = (): TemplateResult => {
 export const alertErrorWithLongTitle = (): TemplateResult => {
     return html`
         <sp-dialog open size="alert" error>
-            <h2 slot="title">Unable to Share Project to Behance Community</h2>
+            <h2 slot="heading">Unable to Share Project to Behance Community</h2>
             Smart filters are nondestructive and will preserve your original
             images.
             <sp-button variant="secondary" slot="button">Cancel</sp-button>
@@ -201,7 +211,7 @@ export const alertErrorWithLongTitle = (): TemplateResult => {
 export const fullscreen = (): TemplateResult => {
     return html`
         <sp-dialog open mode="fullscreen">
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -342,7 +352,7 @@ export const fullscreen = (): TemplateResult => {
 export const fullscreenTakeover = (): TemplateResult => {
     return html`
         <sp-dialog open mode="fullscreenTakeover">
-            <h2 slot="title">Enable Smart Filters?</h2>
+            <h2 slot="heading">Enable Smart Filters?</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

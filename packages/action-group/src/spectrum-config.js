@@ -44,9 +44,8 @@ const config = {
             ],
             complexSelectors: [
                 {
-                    replacement: '::slotted(*:not(:first-of-type))',
-                    selector:
-                        '.spectrum-ActionGroup-item+.spectrum-ActionGroup-item',
+                    replacement: '::slotted(:not(:last-child))',
+                    selector: '.spectrum-ActionGroup-item:not(:last-child)',
                 },
             ],
         },

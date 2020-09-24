@@ -67,7 +67,7 @@ const config = {
                 },
                 {
                     type: 'boolean',
-                    selector: '.spectrum-Dialog--dismissible',
+                    selector: '.spectrum-Dialog--dismissable',
                     name: 'dismissible',
                 },
                 {
@@ -96,8 +96,8 @@ const config = {
             ],
             slots: [
                 {
-                    selector: '.spectrum-Dialog-title',
-                    name: 'title',
+                    selector: '.spectrum-Dialog-heading',
+                    name: 'heading',
                 },
                 {
                     selector: '.spectrum-Dialog-hero',
@@ -109,6 +109,14 @@ const config = {
                 },
             ],
             classes: [
+                {
+                    selector: '.spectrum-Dialog-grid',
+                    name: 'grid',
+                },
+                {
+                    selector: '.spectrum-Dialog-divider',
+                    name: 'divider',
+                },
                 {
                     selector: '.spectrum-Dialog-content',
                     name: 'content',
@@ -132,6 +140,14 @@ const config = {
                 {
                     selector: '.spectrum-Button',
                     name: 'button',
+                },
+                {
+                    selector: '.spectrum-Dialog-buttonGroup',
+                    name: 'buttonGroup',
+                },
+                {
+                    selector: '.spectrum-Dialog-buttonGroup--noFooter',
+                    name: 'buttonGroup--noFooter',
                 },
             ],
             exclude: [/\.spectrum-Dialog-wrapper/],

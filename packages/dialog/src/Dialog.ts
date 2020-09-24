@@ -19,6 +19,7 @@ import {
     query,
 } from '@spectrum-web-components/base';
 
+import '@spectrum-web-components/rule/sp-rule.js';
 import '@spectrum-web-components/button/sp-action-button.js';
 import alertMediumStyles from '@spectrum-web-components/icon/src/spectrum-icon-alert-medium.css.js';
 import crossLargeStyles from '@spectrum-web-components/icon/src/spectrum-icon-cross-large.css.js';
@@ -36,10 +37,10 @@ import styles from './dialog.css.js';
  *
  * @fires close - Announces that the dialog has been closed.
  */
-export class Dialog extends ObserveSlotPresence(
-    SpectrumElement,
-    '[slot="footer"]'
-) {
+export class Dialog extends ObserveSlotPresence(SpectrumElement, [
+    '[slot="footer"]',
+    '[slot="button"]',
+]) {
     public static get styles(): CSSResultArray {
         return [styles, alertMediumStyles, crossLargeStyles];
     }
@@ -54,7 +55,11 @@ export class Dialog extends ObserveSlotPresence(
     public dismissible = false;
 
     protected get hasFooter(): boolean {
-        return this.slotContentIsPresent;
+        return this.getSlotContentPresence('[slot="footer"]');
+    }
+
+    protected get hasButtons(): boolean {
+        return this.getSlotContentPresence('[slot="button"]');
     }
 
     @property({ type: Boolean, reflect: true, attribute: 'no-divider' })
@@ -102,12 +107,12 @@ export class Dialog extends ObserveSlotPresence(
 
     protected render(): TemplateResult {
         return html`
-            <slot name="hero"></slot>
-            <div class="header">
-                <slot name="title"></slot>
+            <div class="grid">
+                <slot name="hero"></slot>
+                <slot name="heading"></slot>
                 ${this.error
                     ? html`
-                          <sp-icon class="type-icon alert-medium" size="s">
+                          <sp-icon class="type-icon alert-medium">
                               ${AlertMediumIcon({ hidden: true })}
                           </sp-icon>
                       `
@@ -126,27 +131,33 @@ export class Dialog extends ObserveSlotPresence(
                           </sp-action-button>
                       `
                     : html``}
-                ${this.mode
+                ${this.noDivider
+                    ? html``
+                    : html`
+                          <sp-rule size="medium" class="divider"></sp-rule>
+                      `}
+                <div class="content">
+                    <slot @slotchange=${this.onContentSlotChange}></slot>
+                </div>
+                ${this.hasFooter
                     ? html`
-                          <slot name="button"></slot>
+                          <div class="footer">
+                              <slot name="footer"></slot>
+                          </div>
+                      `
+                    : html``}
+                ${this.hasButtons
+                    ? html`
+                          <sp-button-group
+                              class="buttonGroup ${this.hasFooter
+                                  ? ''
+                                  : 'buttonGroup--noFooter'}"
+                          >
+                              <slot name="button"></slot>
+                          </sp-button-group>
                       `
                     : html``}
             </div>
-            <div class="content">
-                <slot @slotchange=${this.onContentSlotChange}></slot>
-            </div>
-            ${!this.mode || this.hasFooter
-                ? html`
-                      <div class="footer">
-                          <slot name="footer"></slot>
-                          ${!this.mode
-                              ? html`
-                                    <slot name="button"></slot>
-                                `
-                              : html``}
-                      </div>
-                  `
-                : html``}
         `;
     }
 

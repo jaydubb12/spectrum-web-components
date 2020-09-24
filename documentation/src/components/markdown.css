@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 */
 
 @import '@spectrum-web-components/styles/typography.css';
-@import '@spectrum-css/rule/dist/index-vars.css';
+@import '@spectrum-css/divider/dist/index-vars.css';
 @import '@spectrum-css/table/dist/index-vars.css';
 
 /* 
