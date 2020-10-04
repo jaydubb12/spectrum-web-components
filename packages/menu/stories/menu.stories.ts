@@ -121,9 +121,7 @@ export const headersAndIcons = (): TemplateResult => {
     `;
 };
 
-headersAndIcons.story = {
-    name: 'Headers and Icons',
-};
+headersAndIcons.storyName = 'Headers and Icons';
 
 export const Selected = (): TemplateResult => {
     return html`

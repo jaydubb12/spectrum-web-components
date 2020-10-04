@@ -25,9 +25,7 @@ export const listMedium = (): TemplateResult => html`
     </icons-demo>
 `;
 
-listMedium.story = {
-    name: 'UI Icons - Medium',
-};
+listMedium.storyName = 'UI Icons - Medium';
 
 export const listLarge = (): TemplateResult => html`
     <icons-demo style="color: ${color('Color', '#000', 'Element')}">
@@ -35,6 +33,4 @@ export const listLarge = (): TemplateResult => html`
     </icons-demo>
 `;
 
-listLarge.story = {
-    name: 'UI Icons - Large',
-};
+listLarge.storyName = 'UI Icons - Large';

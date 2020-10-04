@@ -55,9 +55,7 @@ export const imageIcon = (): TemplateResult => {
     `;
 };
 
-imageIcon.story = {
-    name: 'Image Icon',
-};
+imageIcon.storyName = 'Image Icon';
 
 export const svgIcon = (): TemplateResult => {
     return html`
@@ -83,6 +81,4 @@ export const svgIcon = (): TemplateResult => {
     `;
 };
 
-svgIcon.story = {
-    name: 'SVG Icon',
-};
+svgIcon.storyName = 'SVG Icon';

@@ -64,9 +64,7 @@ export const quietChecked = (): TemplateResult => {
     `;
 };
 
-quietChecked.story = {
-    name: 'Quiet checked',
-};
+quietChecked.storyName = 'Quiet checked';
 
 export const Autofocus = (): TemplateResult => {
     return html`
@@ -92,6 +90,4 @@ export const disabledChecked = (): TemplateResult => {
     `;
 };
 
-disabledChecked.story = {
-    name: 'Disabled checked',
-};
+disabledChecked.storyName = 'Disabled checked';

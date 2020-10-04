@@ -50,6 +50,4 @@ export const overBackground = (): TemplateResult => {
     `;
 };
 
-overBackground.story = {
-    name: 'Over background',
-};
+overBackground.storyName = 'Over background';

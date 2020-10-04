@@ -43,9 +43,7 @@ export const quietChecked = (): TemplateResult => {
     `;
 };
 
-quietChecked.story = {
-    name: 'Quiet checked',
-};
+quietChecked.storyName = 'Quiet checked';
 
 export const Autofocus = (): TemplateResult => {
     return html`
@@ -65,9 +63,7 @@ export const invalidChecked = (): TemplateResult => {
     `;
 };
 
-invalidChecked.story = {
-    name: 'Invalid checked',
-};
+invalidChecked.storyName = 'Invalid checked';
 
 export const Disabled = (): TemplateResult => {
     return html`
@@ -81,9 +77,7 @@ export const disabledChecked = (): TemplateResult => {
     `;
 };
 
-disabledChecked.story = {
-    name: 'Disabled checked',
-};
+disabledChecked.storyName = 'Disabled checked';
 
 export const labelBelow = (): TemplateResult => {
     return html`
@@ -91,9 +85,7 @@ export const labelBelow = (): TemplateResult => {
     `;
 };
 
-labelBelow.story = {
-    name: 'Label below',
-};
+labelBelow.storyName = 'Label below';
 
 export const labelBelowChecked = (): TemplateResult => {
     return html`
@@ -101,9 +93,7 @@ export const labelBelowChecked = (): TemplateResult => {
     `;
 };
 
-labelBelowChecked.story = {
-    name: 'Label below checked',
-};
+labelBelowChecked.storyName = 'Label below checked';
 
 export const groupExample = (): TemplateResult => {
     return html`
@@ -116,9 +106,7 @@ export const groupExample = (): TemplateResult => {
     `;
 };
 
-groupExample.story = {
-    name: 'Group example',
-};
+groupExample.storyName = 'Group example';
 
 export const tabIndexExample = (): TemplateResult => {
     return html`
@@ -138,6 +126,4 @@ export const tabIndexExample = (): TemplateResult => {
     `;
 };
 
-tabIndexExample.story = {
-    name: 'Tab index example',
-};
+tabIndexExample.storyName = 'Tab index example';

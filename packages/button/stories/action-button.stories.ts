@@ -84,9 +84,7 @@ export const wIconButton = (): TemplateResult => {
     `;
 };
 
-wIconButton.story = {
-    name: 'w/ Icon button',
-};
+wIconButton.storyName = 'w/ Icon button';
 
 export const iconOnlyButton = (): TemplateResult => {
     return html`

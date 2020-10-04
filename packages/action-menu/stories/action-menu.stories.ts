@@ -39,18 +39,23 @@ export const customIcon = (): TemplateResult => {
     `;
 };
 
-export const Default = (): TemplateResult => {
+export const Default = ({
+    changeHandler,
+}: { changeHandler?: (event: Event) => void } = {}): TemplateResult => {
     const ariaLabel = text('Arial Label', 'More Actions', 'Component');
     const visibleLabel = text('Visible Label', 'More Actions', 'Component');
     const disabled = boolean('Is Disabled', false, 'Component');
-    const changeHandler = (event: Event): void => {
-        const actionMenu = event.target as ActionMenu;
-        action(`Change: ${actionMenu.value}`)();
-    };
     return ActionMenuMarkup({
         ariaLabel,
         disabled,
         changeHandler,
         visibleLabel,
     });
+};
+
+Default.args = {
+    changeHandler: (event: Event): void => {
+        const actionMenu = event.target as ActionMenu;
+        action(`Change: ${actionMenu.value}`)();
+    },
 };

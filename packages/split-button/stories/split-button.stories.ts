@@ -47,9 +47,7 @@ export const cta = (options = {}): TemplateResult => {
     `;
 };
 
-cta.story = {
-    name: 'Field, variant: CTA',
-};
+cta.storyName = 'Field, variant: CTA';
 
 export const ctaOpen = (options = {}): TemplateResult => {
     return html`
@@ -61,9 +59,7 @@ export const ctaOpen = (options = {}): TemplateResult => {
     `;
 };
 
-ctaOpen.story = {
-    name: 'Field, Open, variant: CTA',
-};
+ctaOpen.storyName = 'Field, Open, variant: CTA';
 
 export const primary = (options = {}): TemplateResult => {
     return html`
@@ -78,9 +74,7 @@ export const primary = (options = {}): TemplateResult => {
     `;
 };
 
-primary.story = {
-    name: 'Field, variant: Primary',
-};
+primary.storyName = 'Field, variant: Primary';
 
 export const secondary = (options = {}): TemplateResult => {
     return html`
@@ -95,9 +89,7 @@ export const secondary = (options = {}): TemplateResult => {
     `;
 };
 
-secondary.story = {
-    name: 'Field, variant: Secondary',
-};
+secondary.storyName = 'Field, variant: Secondary';
 
 export const moreCta = (options = {}): TemplateResult => {
     return html`
@@ -112,9 +104,7 @@ export const moreCta = (options = {}): TemplateResult => {
     `;
 };
 
-moreCta.story = {
-    name: 'More, variant: CTA',
-};
+moreCta.storyName = 'More, variant: CTA';
 
 export const moreCtaOpen = (options = {}): TemplateResult => {
     return html`
@@ -126,9 +116,7 @@ export const moreCtaOpen = (options = {}): TemplateResult => {
     `;
 };
 
-moreCtaOpen.story = {
-    name: 'More, Open, variant: CTA',
-};
+moreCtaOpen.storyName = 'More, Open, variant: CTA';
 
 export const morePrimary = (options = {}): TemplateResult => {
     return html`
@@ -143,9 +131,7 @@ export const morePrimary = (options = {}): TemplateResult => {
     `;
 };
 
-morePrimary.story = {
-    name: 'More, variant: Primary',
-};
+morePrimary.storyName = 'More, variant: Primary';
 
 export const moreSecondary = (options = {}): TemplateResult => {
     return html`
@@ -160,6 +146,4 @@ export const moreSecondary = (options = {}): TemplateResult => {
     `;
 };
 
-moreSecondary.story = {
-    name: 'More, variant: Secondary',
-};
+moreSecondary.storyName = 'More, variant: Secondary';

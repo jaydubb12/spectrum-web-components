@@ -162,9 +162,7 @@ export const quietActions = (): TemplateResult => {
     `;
 };
 
-quietActions.story = {
-    name: 'Quiet w/ Actions',
-};
+quietActions.storyName = 'Quiet w/ Actions';
 
 export const small = (): TemplateResult => {
     return html`

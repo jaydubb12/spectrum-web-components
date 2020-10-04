@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 */
 import { html, action } from '@open-wc/demoing-storybook';
 
-import '../';
+import '../sp-checkbox.js';
 import { TemplateResult } from '@spectrum-web-components/base';
 
 export default {
@@ -51,9 +51,7 @@ export const quietChecked = (): TemplateResult => {
     `;
 };
 
-quietChecked.story = {
-    name: 'Quiet checked',
-};
+quietChecked.storyName = 'Quiet checked';
 
 export const quietIndeterminate = (): TemplateResult => {
     return html`
@@ -61,9 +59,7 @@ export const quietIndeterminate = (): TemplateResult => {
     `;
 };
 
-quietIndeterminate.story = {
-    name: 'Quiet indeterminate',
-};
+quietIndeterminate.storyName = 'Quiet indeterminate';
 
 export const Autofocus = (): TemplateResult => {
     return html`
@@ -83,9 +79,7 @@ export const invalidChecked = (): TemplateResult => {
     `;
 };
 
-invalidChecked.story = {
-    name: 'Invalid checked',
-};
+invalidChecked.storyName = 'Invalid checked';
 
 export const invalidIndeterminate = (): TemplateResult => {
     return html`
@@ -93,9 +87,7 @@ export const invalidIndeterminate = (): TemplateResult => {
     `;
 };
 
-invalidIndeterminate.story = {
-    name: 'Invalid indeterminate',
-};
+invalidIndeterminate.storyName = 'Invalid indeterminate';
 
 export const Disabled = (): TemplateResult => {
     return html`
@@ -109,9 +101,7 @@ export const disabledChecked = (): TemplateResult => {
     `;
 };
 
-disabledChecked.story = {
-    name: 'Disabled checked',
-};
+disabledChecked.storyName = 'Disabled checked';
 
 export const disabledIndeterminate = (): TemplateResult => {
     return html`
@@ -119,9 +109,7 @@ export const disabledIndeterminate = (): TemplateResult => {
     `;
 };
 
-disabledIndeterminate.story = {
-    name: 'Disabled indeterminate',
-};
+disabledIndeterminate.storyName = 'Disabled indeterminate';
 
 export const tabIndexExample = (): TemplateResult => {
     return html`
@@ -133,6 +121,4 @@ export const tabIndexExample = (): TemplateResult => {
     `;
 };
 
-tabIndexExample.story = {
-    name: 'Tab index example',
-};
+tabIndexExample.storyName = 'Tab index example';

@@ -66,6 +66,4 @@ export const ui = (): TemplateResult => {
     `;
 };
 
-ui.story = {
-    name: 'UI Icons',
-};
+ui.storyName = 'UI Icons';

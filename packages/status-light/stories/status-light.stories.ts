@@ -40,6 +40,4 @@ export const disabledTrue = (): TemplateResult => html`
     </sp-status-light>
 `;
 
-disabledTrue.story = {
-    name: 'disabled: true',
-};
+disabledTrue.storyName = 'disabled: true';

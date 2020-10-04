@@ -20,7 +20,7 @@ window.process = window.process || {};
 window.process.env = window.process.env || {};
 window.process.env.NODE_ENV = window.process.env.NODE_ENV || 'production';
 
-addDecorator(withA11y);
+// addDecorator(withA11y);
 addDecorator(withKnobs);
 addDecorator(withWebComponentsKnobs);
 const colorOptions = {
@@ -85,6 +85,9 @@ addDecorator((story) => {
 
 addParameters({
     a11y: {
+        element: '#root',
+        options: {},
+        manual: true,
         config: {},
         options: {
             checks: { 'color-contrast': { options: { noScroll: true } } },

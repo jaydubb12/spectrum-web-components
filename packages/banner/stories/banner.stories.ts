@@ -60,9 +60,7 @@ export const bannerTypes = (): TemplateResult => {
     `;
 };
 
-bannerTypes.story = {
-    name: 'Banner Types',
-};
+bannerTypes.storyName = 'Banner Types';
 
 export const cornerPlacement = (): TemplateResult => {
     return html`
@@ -79,6 +77,4 @@ export const cornerPlacement = (): TemplateResult => {
     `;
 };
 
-cornerPlacement.story = {
-    name: 'Corner Placement',
-};
+cornerPlacement.storyName = 'Corner Placement';

@@ -69,36 +69,28 @@ export const variantCta = (): TemplateResult =>
         variant: 'cta',
     });
 
-variantCta.story = {
-    name: 'variant: cta',
-};
+variantCta.storyName = 'variant: cta';
 
 export const variantPrimary = (): TemplateResult =>
     renderButtonPair({
         variant: 'primary',
     });
 
-variantPrimary.story = {
-    name: 'variant: primary',
-};
+variantPrimary.storyName = 'variant: primary';
 
 export const variantSecondary = (): TemplateResult =>
     renderButtonPair({
         variant: 'secondary',
     });
 
-variantSecondary.story = {
-    name: 'variant: secondary',
-};
+variantSecondary.storyName = 'variant: secondary';
 
 export const variantNegative = (): TemplateResult =>
     renderButtonPair({
         variant: 'negative',
     });
 
-variantNegative.story = {
-    name: 'variant: negative',
-};
+variantNegative.storyName = 'variant: negative';
 
 export const variantOverbackground = (): TemplateResult => {
     return html`
@@ -112,9 +104,7 @@ export const variantOverbackground = (): TemplateResult => {
     `;
 };
 
-variantOverbackground.story = {
-    name: 'variant: overBackground',
-};
+variantOverbackground.storyName = 'variant: overBackground';
 
 export const attributeQuietVariantPrimary = (): TemplateResult =>
     renderButtonPair({
@@ -122,9 +112,7 @@ export const attributeQuietVariantPrimary = (): TemplateResult =>
         quiet: true,
     });
 
-attributeQuietVariantPrimary.story = {
-    name: 'attribute: quiet, variant: primary',
-};
+attributeQuietVariantPrimary.storyName = 'attribute: quiet, variant: primary';
 
 export const attributeQuietVariantSecondary = (): TemplateResult =>
     renderButtonPair({
@@ -132,9 +120,8 @@ export const attributeQuietVariantSecondary = (): TemplateResult =>
         quiet: true,
     });
 
-attributeQuietVariantSecondary.story = {
-    name: 'attribute: quiet, variant: secondary',
-};
+attributeQuietVariantSecondary.storyName =
+    'attribute: quiet, variant: secondary';
 
 export const attributeQuietVariantNegative = (): TemplateResult =>
     renderButtonPair({
@@ -142,9 +129,7 @@ export const attributeQuietVariantNegative = (): TemplateResult =>
         quiet: true,
     });
 
-attributeQuietVariantNegative.story = {
-    name: 'attribute: quiet, variant: negative',
-};
+attributeQuietVariantNegative.storyName = 'attribute: quiet, variant: negative';
 
 export const attributeQuietVariantOverbackground = (): TemplateResult => {
     return html`
@@ -159,9 +144,8 @@ export const attributeQuietVariantOverbackground = (): TemplateResult => {
     `;
 };
 
-attributeQuietVariantOverbackground.story = {
-    name: 'attribute: quiet, variant: overBackground',
-};
+attributeQuietVariantOverbackground.storyName =
+    'attribute: quiet, variant: overBackground';
 
 export const withIcon = (): TemplateResult => {
     const iconRight = boolean('Icon on Right', false);
@@ -254,9 +238,7 @@ export const minWidthButton = (): TemplateResult => {
     `;
 };
 
-minWidthButton.story = {
-    name: 'min-width button',
-};
+minWidthButton.storyName = 'min-width button';
 
 export const buttonWithHref = (): TemplateResult => {
     return html`
@@ -266,9 +248,7 @@ export const buttonWithHref = (): TemplateResult => {
     `;
 };
 
-buttonWithHref.story = {
-    name: 'button with href',
-};
+buttonWithHref.storyName = 'button with href';
 
 export const buttonWithHrefTargetBlank = (): TemplateResult => {
     return html`
@@ -281,6 +261,4 @@ export const buttonWithHrefTargetBlank = (): TemplateResult => {
     `;
 };
 
-buttonWithHrefTargetBlank.story = {
-    name: 'button with href target="_blank"',
-};
+buttonWithHrefTargetBlank.storyName = 'button with href target="_blank"';

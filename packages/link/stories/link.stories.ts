@@ -59,6 +59,4 @@ export const Download = (): TemplateResult => {
     `;
 };
 
-overBackground.story = {
-    name: 'Over Background',
-};
+overBackground.storyName = 'Over Background';

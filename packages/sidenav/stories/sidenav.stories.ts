@@ -80,9 +80,7 @@ export const Multilevel = (): TemplateResult => {
     `;
 };
 
-Multilevel.story = {
-    name: 'Multi-level',
-};
+Multilevel.storyName = 'Multi-level';
 
 export const levelsAndDisabled = (): TemplateResult => {
     return html`

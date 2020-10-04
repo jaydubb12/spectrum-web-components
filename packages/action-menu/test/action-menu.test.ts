@@ -13,44 +13,19 @@ governing permissions and limitations under the License.
 import '@spectrum-web-components/action-menu/sp-action-menu.js';
 import { ActionMenu } from '@spectrum-web-components/action-menu';
 import '@spectrum-web-components/icon/sp-icon.js';
-import { SettingsIcon } from '@spectrum-web-components/icons-workflow';
 import '@spectrum-web-components/menu/sp-menu.js';
 import '@spectrum-web-components/menu/sp-menu-item.js';
 import '@spectrum-web-components/menu/sp-menu-divider.js';
-import { fixture, elementUpdated, html, expect } from '@open-wc/testing';
-
-const actionMenuFixture = async (): Promise<ActionMenu> =>
-    await fixture<ActionMenu>(
-        html`
-            <sp-action-menu>
-                <sp-menu>
-                    <sp-menu-item>
-                        Deselect
-                    </sp-menu-item>
-                    <sp-menu-item>
-                        Select Inverse
-                    </sp-menu-item>
-                    <sp-menu-item>
-                        Feather...
-                    </sp-menu-item>
-                    <sp-menu-item>
-                        Select and Mask...
-                    </sp-menu-item>
-                    <sp-menu-divider></sp-menu-divider>
-                    <sp-menu-item>
-                        Save Selection
-                    </sp-menu-item>
-                    <sp-menu-item disabled>
-                        Make Work Path
-                    </sp-menu-item>
-                </sp-menu>
-            </sp-action-menu>
-        `
-    );
+import { fixture, elementUpdated, expect } from '@open-wc/testing';
+import {
+    iconOnly,
+    Default,
+    customIcon,
+} from '../stories/action-menu.stories.js';
 
 describe('Action menu', () => {
     it('loads', async () => {
-        const el = await actionMenuFixture();
+        const el = await fixture<ActionMenu>(iconOnly());
         await elementUpdated(el);
 
         expect(el).to.not.be.undefined;
@@ -58,76 +33,21 @@ describe('Action menu', () => {
         await expect(el).to.be.accessible();
     });
     it('loads - [label]', async () => {
-        const el = await fixture<ActionMenu>(
-            html`
-                <sp-action-menu label="More Actions">
-                    <sp-menu>
-                        <sp-menu-item>
-                            Deselect
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Select Inverse
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Feather...
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Select and Mask...
-                        </sp-menu-item>
-                        <sp-menu-divider></sp-menu-divider>
-                        <sp-menu-item>
-                            Save Selection
-                        </sp-menu-item>
-                        <sp-menu-item disabled>
-                            Make Work Path
-                        </sp-menu-item>
-                    </sp-menu>
-                </sp-action-menu>
-            `
-        );
+        const el = await fixture<ActionMenu>(Default());
 
         await elementUpdated(el);
 
         await expect(el).to.be.accessible();
     });
     it('loads - [custom icon]', async () => {
-        const el = await fixture<ActionMenu>(
-            html`
-                <sp-action-menu label="More Actions">
-                    <sp-icon slot="icon" size="s">
-                        ${SettingsIcon()}
-                    </sp-icon>
-                    <sp-menu>
-                        <sp-menu-item>
-                            Deselect
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Select Inverse
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Feather...
-                        </sp-menu-item>
-                        <sp-menu-item>
-                            Select and Mask...
-                        </sp-menu-item>
-                        <sp-menu-divider></sp-menu-divider>
-                        <sp-menu-item>
-                            Save Selection
-                        </sp-menu-item>
-                        <sp-menu-item disabled>
-                            Make Work Path
-                        </sp-menu-item>
-                    </sp-menu>
-                </sp-action-menu>
-            `
-        );
+        const el = await fixture<ActionMenu>(customIcon());
 
         await elementUpdated(el);
 
         await expect(el).to.be.accessible();
     });
     it('stays `quiet`', async () => {
-        const el = await actionMenuFixture();
+        const el = await fixture<ActionMenu>(Default());
         await elementUpdated(el);
 
         expect(el.quiet).to.be.true;
@@ -138,7 +58,7 @@ describe('Action menu', () => {
         expect(el.quiet).to.be.true;
     });
     it('stay `valid`', async () => {
-        const el = await actionMenuFixture();
+        const el = await fixture<ActionMenu>(Default());
 
         await elementUpdated(el);
 
@@ -150,7 +70,7 @@ describe('Action menu', () => {
         expect(el.invalid).to.be.false;
     });
     it('opens unmeasured', async () => {
-        const el = await actionMenuFixture();
+        const el = await fixture<ActionMenu>(Default());
 
         await elementUpdated(el);
         const button = el.button as HTMLButtonElement;

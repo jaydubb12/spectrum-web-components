@@ -218,9 +218,7 @@ export const iconsIi = (): TemplateResult => {
     `;
 };
 
-iconsIi.story = {
-    name: 'Icons II',
-};
+iconsIi.storyName = 'Icons II';
 
 export const iconsIii = (): TemplateResult => {
     return html`
@@ -250,9 +248,7 @@ export const iconsIii = (): TemplateResult => {
     `;
 };
 
-iconsIii.story = {
-    name: 'Icons III',
-};
+iconsIii.storyName = 'Icons III';
 
 export const Quiet = (): TemplateResult => {
     const directions = {
@@ -304,6 +300,4 @@ export const quietCompact = (): TemplateResult => {
     `;
 };
 
-quietCompact.story = {
-    name: 'Quiet Compact',
-};
+quietCompact.storyName = 'Quiet Compact';

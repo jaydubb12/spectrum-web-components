@@ -66,6 +66,4 @@ export const Workflow = (): TemplateResult => {
     `;
 };
 
-Workflow.story = {
-    name: 'Workflow Icons',
-};
+Workflow.storyName = 'Workflow Icons';
