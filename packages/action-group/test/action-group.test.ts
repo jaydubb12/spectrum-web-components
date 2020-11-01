@@ -19,7 +19,7 @@ describe('ActionGroup', () => {
     it('loads default action-group accessibly', async () => {
         const el = await fixture<ActionGroup>(
             html`
-                <sp-action-group></sp-action-group>
+                <sp-action-group label="Empty Group"></sp-action-group>
             `
         );
 
@@ -28,3 +28,16 @@ describe('ActionGroup', () => {
         await expect(el).to.be.accessible();
     });
 });
+
+// action with [selected] by default
+// action with [selected] applied
+// action without [selected] clicked
+// group with `selected.length` by default
+// group with `selected.length` applied
+// group with [selects="one"] with `select.length > 1` by default
+// group with [selects="one"] with `select.length > 1` applied
+// tabIndex=-1 managed when tabbing past
+// tabIndex=-1 managed when using arrow keys
+// tabIndex=-1 managed when clicking with "mouse"
+// tabIndex=-1 managed when clicking with "keyboard"
+// selects="multiple"
