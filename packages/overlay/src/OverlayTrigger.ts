@@ -26,6 +26,10 @@ import {
 } from './overlay-types';
 import { openOverlay } from './loader.js';
 import overlayTriggerStyles from './overlay-trigger.css.js';
+import visuallyHiddenStyles from '@spectrum-web-components/styles/visually-hidden.js';
+
+const longpress = 1000;
+let delay: ReturnType<typeof setTimeout>;
 
 /**
  * A overlay trigger component for displaying overlays relative to other content.
@@ -40,7 +44,7 @@ export class OverlayTrigger extends LitElement {
     private closeHoverOverlay?: () => void;
 
     public static get styles(): CSSResultArray {
-        return [overlayTriggerStyles];
+        return [overlayTriggerStyles, visuallyHiddenStyles];
     }
 
     /**
@@ -59,12 +63,40 @@ export class OverlayTrigger extends LitElement {
     @property({ type: Boolean, reflect: true })
     public disabled = false;
 
+    @property({ type: Boolean, attribute: false })
+    private hasLongpressContent = false;
+
     private clickContent?: HTMLElement;
+    private longpressContent?: HTMLElement;
     private hoverContent?: HTMLElement;
     private targetContent?: HTMLElement;
 
     public overloadTarget(target: HTMLElement): void {
         this.targetContent = target;
+    }
+
+    private onPointerdown(): void {
+        delay = setTimeout(() => this.onLongpress(), longpress);
+    }
+
+    private onPointerup(): void {
+        clearTimeout(delay);
+    }
+
+    private onKeydown({ code }: KeyboardEvent): void {
+        if (code === 'Space') {
+            this.onPointerdown();
+        }
+    }
+
+    private onKeyup({ code }: KeyboardEvent): void {
+        if (code === 'Space') {
+            this.onPointerup();
+        }
+    }
+
+    private onLongpress(): void {
+        this.onTrigger(new Event('longpress'));
     }
 
     protected render(): TemplateResult {
@@ -76,12 +108,28 @@ export class OverlayTrigger extends LitElement {
                 @click=${this.onTrigger}
                 @mouseenter=${this.onTrigger}
                 @mouseleave=${this.onTrigger}
+                @pointerdown=${this.onPointerdown}
+                @pointerup=${this.onPointerup}
+                @pointercancel=${this.onPointerup}
+                @keydown=${this.onKeydown}
+                @keyup=${this.onKeyup}
+                @contextmenu=${this.onPointerup}
             >
                 <slot
                     @slotchange=${this.onTargetSlotChange}
                     name="trigger"
                 ></slot>
             </div>
+            ${this.hasLongpressContent
+                ? html`
+                      <button
+                          class="visually-hidden"
+                          @click=${this.onTriggerKeyboardLongpress}
+                      >
+                          See Additional Options
+                      </button>
+                  `
+                : html``}
             <div id="overlay-content">
                 <slot
                     @slotchange=${this.onClickSlotChange}
@@ -90,6 +138,10 @@ export class OverlayTrigger extends LitElement {
                 <slot
                     @slotchange=${this.onHoverSlotChange}
                     name="hover-content"
+                ></slot>
+                <slot
+                    @slotchange=${this.onLongpressSlotChange}
+                    name="longpress-content"
                 ></slot>
             </div>
         `;
@@ -133,6 +185,9 @@ export class OverlayTrigger extends LitElement {
             case 'click':
                 this.onTriggerClick();
                 return;
+            case 'longpress':
+                this.onTriggerLongpress();
+                return;
             case 'mouseenter':
                 this.onTriggerMouseEnter();
                 return;
@@ -158,6 +213,33 @@ export class OverlayTrigger extends LitElement {
                 this.type ? this.type : 'click',
                 clickContent,
                 this.overlayOptions
+            );
+        }
+    }
+
+    private onTriggerKeyboardLongpress(): void {
+        this.onTriggerLongpress('click');
+    }
+
+    public async onTriggerLongpress(type?: 'click'): Promise<void> {
+        if (this.targetContent && this.longpressContent) {
+            if (this.type === 'modal') {
+                const firstFocusable = this.querySelector(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                ) as HTMLElement;
+                if (!firstFocusable) {
+                    this.longpressContent.tabIndex = 0;
+                }
+            }
+            const { targetContent, longpressContent } = this;
+            this.closeClickOverlay = await OverlayTrigger.openOverlay(
+                targetContent,
+                this.type ? this.type : type || 'longpress',
+                longpressContent,
+                {
+                    ...this.overlayOptions,
+                    receivesFocus: 'auto',
+                }
             );
         }
     }
@@ -196,6 +278,14 @@ export class OverlayTrigger extends LitElement {
     ): void {
         const content = this.extractSlotContentFromEvent(event);
         this.clickContent = content;
+    }
+
+    private onLongpressSlotChange(
+        event: Event & { target: HTMLSlotElement }
+    ): void {
+        const content = this.extractSlotContentFromEvent(event);
+        this.longpressContent = content;
+        this.hasLongpressContent = !!this.longpressContent;
     }
 
     private onHoverSlotChange(

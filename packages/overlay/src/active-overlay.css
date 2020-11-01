@@ -41,6 +41,10 @@ governing permissions and limitations under the License.
     pointer-events: none;
 }
 
+:host(:focus) {
+    outline: none;
+}
+
 sp-theme,
 #contents {
     height: 100%;

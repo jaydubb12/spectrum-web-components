@@ -23,9 +23,13 @@ import '@spectrum-web-components/radio/sp-radio-group.js';
 import '@spectrum-web-components/tooltip/sp-tooltip.js';
 import '@spectrum-web-components/theme/sp-theme.js';
 import '@spectrum-web-components/theme/src/themes.js';
+import '@spectrum-web-components/button/sp-action-button.js';
+import '@spectrum-web-components/action-group/sp-action-group.js';
+import '@spectrum-web-components/icon/sp-icon.js';
 import { Color, Scale } from '@spectrum-web-components/theme';
 
 import './overlay-story-components';
+import { MagnifierIcon } from '@spectrum-web-components/icons-ui';
 
 declare global {
     interface Window {
@@ -463,5 +467,32 @@ export const sideHoverDraggable = (): TemplateResult => {
                 </sp-tooltip>
             </overlay-trigger>
         </overlay-drag>
+    `;
+};
+
+export const longpress = (): TemplateResult => {
+    return html`
+        <overlay-trigger placement="right-start">
+            <sp-action-button slot="trigger" hold-affordance>
+                <sp-icon slot="icon">${MagnifierIcon()}</sp-icon>
+            </sp-action-button>
+            <sp-popover slot="longpress-content" open>
+                <sp-action-group
+                    selects="one"
+                    vertical
+                    style="margin: calc(var(--spectrum-actiongroup-button-gap-y,var(--spectrum-global-dimension-size-100)) / 2);"
+                >
+                    <sp-action-button>
+                        <sp-icon slot="icon">${MagnifierIcon()}</sp-icon>
+                    </sp-action-button>
+                    <sp-action-button>
+                        <sp-icon slot="icon">${MagnifierIcon()}</sp-icon>
+                    </sp-action-button>
+                    <sp-action-button>
+                        <sp-icon slot="icon">${MagnifierIcon()}</sp-icon>
+                    </sp-action-button>
+                </sp-action-group>
+            </sp-popover>
+        </overlay-trigger>
     `;
 };

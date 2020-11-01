@@ -149,6 +149,9 @@ export class OverlayStack {
         if (this.findOverlayForContent(details.content)) {
             return false;
         }
+        if (details.interaction === 'longpress') {
+            this.initialLongpressClick = true;
+        }
         if (details.interaction === 'modal') {
             this.startTabTrapping();
         }
@@ -342,7 +345,13 @@ export class OverlayStack {
         return this.hideAndCloseOverlay(this.topOverlay);
     }
 
+    private initialLongpressClick = false;
+
     private handleMouse = (): void => {
+        if (this.initialLongpressClick) {
+            this.initialLongpressClick = false;
+            return;
+        }
         if (!this.preventMouseRootClose) {
             this.closeTopOverlay();
         }
