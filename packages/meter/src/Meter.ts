@@ -17,6 +17,7 @@ import {
     TemplateResult,
     property,
     PropertyValues,
+    SizedMixin,
 } from '@spectrum-web-components/base';
 
 import styles from './meter.css.js';
@@ -24,7 +25,7 @@ import styles from './meter.css.js';
 /**
  * @element sp-meter
  */
-export class Meter extends SpectrumElement {
+export class Meter extends SizedMixin(SpectrumElement) {
     public static get styles(): CSSResultArray {
         return [styles];
     }

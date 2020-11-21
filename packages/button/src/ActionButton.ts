@@ -16,6 +16,7 @@ import {
     property,
     PropertyValues,
     TemplateResult,
+    SizedMixin,
 } from '@spectrum-web-components/base';
 import { ButtonBase } from './ButtonBase.js';
 import buttonStyles from './action-button.css.js';
@@ -28,7 +29,7 @@ import { CornerTriangleIcon } from '@spectrum-web-components/icons-ui';
  *
  * @fires change - Announces a change in the `selected` property of an action button
  */
-export class ActionButton extends ButtonBase {
+export class ActionButton extends SizedMixin(ButtonBase) {
     public static get styles(): CSSResultArray {
         return [...super.styles, buttonStyles, cornerTriangleStyles];
     }

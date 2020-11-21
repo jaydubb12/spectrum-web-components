@@ -18,6 +18,7 @@ import {
     PropertyValues,
     query,
     ifDefined,
+    SizedMixin,
 } from '@spectrum-web-components/base';
 
 import { ButtonVariants } from '@spectrum-web-components/button';
@@ -34,7 +35,7 @@ import styles from './split-button.css.js';
 /**
  * @slot options - The menu with options that will display when the dropdown is open
  */
-export class SplitButton extends DropdownBase {
+export class SplitButton extends SizedMixin(DropdownBase) {
     public static get styles(): CSSResultArray {
         return [buttonBaseStyles, buttonStyles, styles, ChevronDownMediumStyle];
     }

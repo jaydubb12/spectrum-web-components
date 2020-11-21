@@ -17,6 +17,7 @@ import {
     CSSResultArray,
     TemplateResult,
     PropertyValues,
+    SizedMixin,
 } from '@spectrum-web-components/base';
 import statusLightStyles from './status-light.css.js';
 
@@ -24,7 +25,7 @@ import statusLightStyles from './status-light.css.js';
  * A Spectrum status light control.
  * @element sp-status-light
  */
-export class StatusLight extends SpectrumElement {
+export class StatusLight extends SizedMixin(SpectrumElement) {
     public static get styles(): CSSResultArray {
         return [statusLightStyles];
     }

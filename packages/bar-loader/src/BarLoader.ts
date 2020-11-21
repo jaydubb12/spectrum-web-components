@@ -17,6 +17,7 @@ import {
     TemplateResult,
     PropertyValues,
     property,
+    SizedMixin,
 } from '@spectrum-web-components/base';
 
 import styles from './bar-loader.css.js';
@@ -24,7 +25,7 @@ import styles from './bar-loader.css.js';
 /**
  * @element sp-bar-loader
  */
-export class BarLoader extends SpectrumElement {
+export class BarLoader extends SizedMixin(SpectrumElement) {
     public static get styles(): CSSResultArray {
         return [styles];
     }
