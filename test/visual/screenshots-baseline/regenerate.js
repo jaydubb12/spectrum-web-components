@@ -80,15 +80,20 @@ module.exports = {
                 await page.goto(url, {
                     waitUntil: 'networkidle',
                 });
+                // make sure the page it written
                 await page.waitForFunction(
                     () => !!document.querySelector('#root-inner')
                 );
+                // make sure the theme is written
                 await page.waitForFunction(
                     () => !!document.querySelector('sp-theme')
                 );
+                // make sure the theme has been upgraded
                 await page.waitForFunction(
                     () => !!document.querySelector('sp-theme').shadowRoot
                 );
+                // Give it an extra two frames
+                await new Promise((r) => setTimeout(r, 32));
                 await page.screenshot({
                     path: `${baselineDir}/${type}/${stories[i]}__${color}__${scale}__${dir}.png`,
                 });
