@@ -16,7 +16,7 @@ import {
     TemplateResult,
     CSSResultArray,
     query,
-    ifDefined,
+    PropertyValues,
 } from '@spectrum-web-components/base';
 import { LikeAnchor } from '@spectrum-web-components/shared/src/like-anchor.js';
 import { Focusable } from '@spectrum-web-components/shared/src/focusable.js';
@@ -48,7 +48,7 @@ export class ButtonBase extends LikeAnchor(
     private buttonElement!: HTMLButtonElement;
 
     public get focusElement(): HTMLElement {
-        return this.buttonElement;
+        return this.buttonElement || this;
     }
 
     protected get buttonContent(): TemplateResult[] {
@@ -74,13 +74,7 @@ export class ButtonBase extends LikeAnchor(
 
     protected renderButton(): TemplateResult {
         return html`
-            <button
-                id="button"
-                class="button"
-                aria-label=${ifDefined(this.label)}
-            >
-                ${this.buttonContent}
-            </button>
+            ${this.buttonContent}
         `;
     }
 
@@ -92,5 +86,23 @@ export class ButtonBase extends LikeAnchor(
                   anchorContent: this.buttonContent,
               })
             : this.renderButton();
+    }
+
+    protected firstUpdated(changed: PropertyValues): void {
+        super.firstUpdated(changed);
+        if (!this.hasAttribute('tabindex')) {
+            this.tabIndex = 0;
+        }
+    }
+
+    protected updated(changed: PropertyValues): void {
+        super.updated(changed);
+        if (changed.has('href')) {
+            if (this.href && this.href.length > 0) {
+                this.removeAttribute('role');
+            } else {
+                this.setAttribute('role', 'button');
+            }
+        }
     }
 }

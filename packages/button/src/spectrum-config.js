@@ -17,9 +17,7 @@ const config = {
             name: 'button-base',
             host: {
                 selector: '.spectrum-Button',
-                shadowSelector: '.button',
             },
-            focus: '.button',
             slots: [
                 {
                     name: 'icon',
@@ -33,9 +31,7 @@ const config = {
             name: 'fieldbutton',
             host: {
                 selector: '.spectrum-FieldButton',
-                shadowSelector: '.button',
             },
-            focus: '.button',
             attributes: [
                 {
                     type: 'boolean',
@@ -72,9 +68,7 @@ const config = {
             name: 'button',
             host: {
                 selector: '.spectrum-Button',
-                shadowSelector: '.button',
             },
-            focus: '.button',
             attributes: [
                 {
                     type: 'boolean',
@@ -118,9 +112,7 @@ const config = {
             name: 'action-button',
             host: {
                 selector: '.spectrum-ActionButton',
-                shadowSelector: '.button',
             },
-            focus: '.button',
             attributes: [
                 {
                     type: 'boolean',
@@ -165,9 +157,7 @@ const config = {
             name: 'clear-button',
             host: {
                 selector: '.spectrum-ClearButton',
-                shadowSelector: '.button',
             },
-            focus: '.button',
             attributes: [
                 {
                     selector: '.spectrum-ClearButton--small',
