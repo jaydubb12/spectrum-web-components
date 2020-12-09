@@ -31,10 +31,8 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 
 const injectUsedCss = (css) => {
     return (html) => {
-        const initialHTML = posthtml()
-            .use(spectrumMarkdown())
-            .process(html, { sync: true }).html;
-        const finalHTML = postcss([
+        const initialHTML = processHtml(html);
+        const htmlWithCSS = postcss([
             purgecss({
                 content: [
                     {
@@ -48,33 +46,41 @@ const injectUsedCss = (css) => {
                 from: `${process.cwd()}/src/components/`,
             })
             .then((result) => {
-                return initialHTML
-                    .replace(
-                        '<link rel="stylesheet" href="styles.css">',
-                        `<style>${result.css}</style>`
-                    )
-                    .replace(
-                        /src="\//g,
-                        process.env.SWC_DIR
-                            ? `src="/${process.env.SWC_DIR}/`
-                            : 'src="/'
-                    )
-                    .replace(
-                        /href="\//g,
-                        process.env.SWC_DIR
-                            ? `href="/${process.env.SWC_DIR}/`
-                            : 'href="/'
-                    )
-                    .replace(
-                        "('/sw.js')",
-                        process.env.SWC_DIR
-                            ? `('/${process.env.SWC_DIR}/sw.js')`
-                            : "('/sw.js')"
-                    )
-                    .replace('type="module"', 'type="module" async');
+                return initialHTML.replace(
+                    '<link rel="stylesheet" href="styles.css">',
+                    `<style>${result.css}</style>`
+                );
             });
-        return finalHTML;
+        return stringReplaceHtml(htmlWithCSS);
     };
+};
+
+const processHtml = (source) => {
+    return posthtml().use(spectrumMarkdown()).process(source, { sync: true })
+        .html;
+};
+
+const stringReplaceHtml = (source) => {
+    return source
+        .replace(
+            /src="\//g,
+            process.env.SWC_DIR ? `src="/${process.env.SWC_DIR}/` : 'src="/'
+        )
+        .replace(
+            /href="\//g,
+            process.env.SWC_DIR ? `href="/${process.env.SWC_DIR}/` : 'href="/'
+        )
+        .replace(
+            "('/sw.js')",
+            process.env.SWC_DIR
+                ? `('/${process.env.SWC_DIR}/sw.js')`
+                : "('/sw.js')"
+        )
+        .replace('type="module"', 'type="module" async');
+};
+
+const processAndReplaceHTML = (source) => {
+    return stringReplaceHtml(processHtml(source));
 };
 
 const configSW = deepmerge(
@@ -93,15 +99,16 @@ const configSW = deepmerge(
 );
 
 module.exports = async () => {
-    const inputCss = fs.readFileSync(
-        `${process.cwd()}/src/components/styles.css`,
-        'utf8'
-    );
-    const { css } = await postcss([...postCSSPlugins()]).process(inputCss, {
-        from: `${process.cwd()}/src/components/`,
-    });
+    // const inputCss = fs.readFileSync(
+    //     `${process.cwd()}/src/components/styles.css`,
+    //     'utf8'
+    // );
+    // const { css } = await postcss([...postCSSPlugins()]).process(inputCss, {
+    //     from: `${process.cwd()}/src/components/`,
+    // });
     const optionsHTML = {
-        transform: injectUsedCss(css),
+        // transform: injectUsedCss(css),
+        transform: processAndReplaceHTML,
         minify: {
             collapseWhitespace: true,
             conservativeCollapse: true,
@@ -193,6 +200,13 @@ module.exports = async () => {
     mpaConfig.plugins.push(
         copy({
             patterns: ['images/**/*', 'manifest.webmanifest'],
+            rootDir: './_site',
+        })
+    );
+
+    mpaConfig.plugins.push(
+        copy({
+            patterns: ['**/*.css'],
             rootDir: './_site',
         })
     );
